@@ -1,10 +1,7 @@
 package com.web.tests;
 
 import com.web.driver.Driver;
-import com.web.reports.ExtentReport;
 import org.testng.annotations.*;
-
-import java.io.IOException;
 
 
 public class BaseTest {
@@ -14,9 +11,9 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    @Parameters("browser")
-    protected void setUp(String browser) throws Exception {
-        Driver.initializeDriver(browser);
+    @Parameters({"browser", "version"})
+    protected void setUp(String browser, String version) throws Exception {
+        Driver.initializeDriver(browser, version);
     }
 
     @AfterMethod
