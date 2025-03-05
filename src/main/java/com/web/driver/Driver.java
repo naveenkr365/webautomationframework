@@ -15,10 +15,10 @@ public final class Driver {
 
     private Driver(){}
 
-    public static void initializeDriver(String browser){
-        if(Objects.isNull(DriverManager.getDriver())) {
+    public static void initializeDriver(String browser, String version) {
+        if (Objects.isNull(DriverManager.getDriver())) {
             try {
-                DriverManager.setDriver(DriverFactory.initDriver(browser));
+                DriverManager.setDriver(DriverFactory.initDriver(browser, version));
             } catch (MalformedURLException e) {
                 throw new BrowserInvocationFailedException("Unable to Launch Browser.. Check the Driver option");
             }
@@ -26,10 +26,10 @@ public final class Driver {
         }
     }
 
-    public static void quitDriver(){
-        if(Objects.nonNull(DriverManager.getDriver())){
-            DriverManager.getDriver().quit();
-            DriverManager.unload();
+        public static void quitDriver(){
+            if(Objects.nonNull(DriverManager.getDriver())){
+                DriverManager.getDriver().quit();
+                DriverManager.unload();
+            }
         }
-    }
 }

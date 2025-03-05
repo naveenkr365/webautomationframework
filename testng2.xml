@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Parallel Selenium Execution Suite" thread-count="6" parallel="tests">
+    <listeners>
+        <listener class-name="com.web.listeners.ListenerClass"/>
+        <listener class-name="com.web.listeners.MethodInterceptor"/>
+        <listener class-name="com.web.listeners.AnnotationTransformer"/>
+    </listeners>
+
+    <!-- Chrome Latest and Previous Versions -->
+    <test name="Chrome Latest">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="version" value="latest"/>
+        <classes>
+            <class name="com.web.tests.OrangeHRMTests2"/>
+            <class name="com.web.tests.OrangeHRMTests"/>
+        </classes>
+    </test>
+
+    <test name="Chrome Previous">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="version" value="120.0"/>
+        <classes>
+            <class name="com.web.tests.OrangeHRMTests2"/>
+            <class name="com.web.tests.OrangeHRMTests"/>
+        </classes>
+    </test>
+
+    <!-- Edge Latest and Previous Versions -->
+    <test name="Edge Latest">
+        <parameter name="browser" value="edge"/>
+        <parameter name="version" value="latest"/>
+        <classes>
+            <class name="com.web.tests.OrangeHRMTests2"/>
+        </classes>
+    </test>
+
+    <test name="Edge Previous">
+        <parameter name="browser" value="edge"/>
+        <parameter name="version" value="120.0"/>
+        <classes>
+            <class name="com.web.tests.OrangeHRMTests2"/>
+        </classes>
+    </test>
+
+    <!-- Firefox Latest and Previous Versions -->
+    <test name="Firefox Latest">
+        <parameter name="browser" value="firefox"/>
+        <parameter name="version" value="latest"/>
+        <classes>
+            <class name="com.web.tests.OrangeHRMTests2"/>
+        </classes>
+    </test>
+
+    <test name="Firefox Previous">
+        <parameter name="browser" value="firefox"/>
+        <parameter name="version" value="119.0"/>
+        <classes>
+            <class name="com.web.tests.OrangeHRMTests2"/>
+        </classes>
+    </test>
+</suite>

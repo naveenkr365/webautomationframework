@@ -17,45 +17,43 @@ public final class DriverFactory {
 
     private DriverFactory() {}
 
-    public static WebDriver initDriver(String browser) throws MalformedURLException {
+    public static WebDriver initDriver(String browser, String version) throws MalformedURLException {
         WebDriver driver = null;
-
         String runmode = PropertyUtils.get(ConfigProperties.RUNMODE);
+        String gridUrl = "http://localhost:4444/wd/hub"; // Update with EC2 Public IP if needed
 
-        if(browser.equalsIgnoreCase("chrome")){
-            if(runmode.equalsIgnoreCase("remote")){
-                ChromeOptions options = new ChromeOptions();
-                // Remote Execution
-                driver = new RemoteWebDriver(new URL("https://localhost:4444/wd/hub"), options);
+        if (browser.equalsIgnoreCase("chrome")) {
+            ChromeOptions options = new ChromeOptions();
+            if (!version.equalsIgnoreCase("latest")) { // Only set version if not "latest"
+                options.setCapability("browserVersion", version);
+            }
+            if (runmode.equalsIgnoreCase("remote")) {
+                driver = new RemoteWebDriver(new URL(gridUrl), options);
             } else {
-                // Local execution
                 driver = new ChromeDriver();
             }
-        }
-        else if (browser.equalsIgnoreCase("firefox")){
-            if(runmode.equalsIgnoreCase("remote")){
-                FirefoxOptions options = new FirefoxOptions();
-                // Remote Execution
-                driver = new RemoteWebDriver(new URL("https://localhost:4444/wd/hub"), options);
+        } else if (browser.equalsIgnoreCase("firefox")) {
+            FirefoxOptions options = new FirefoxOptions();
+            if (!version.equalsIgnoreCase("latest")) {
+                options.setCapability("browserVersion", version);
+            }
+            if (runmode.equalsIgnoreCase("remote")) {
+                driver = new RemoteWebDriver(new URL(gridUrl), options);
             } else {
-                // Local execution
                 driver = new FirefoxDriver();
             }
-        }
-
-        else if (browser.equalsIgnoreCase("edge")){
-            if(runmode.equalsIgnoreCase("remote")){
-                EdgeOptions options = new EdgeOptions();
-                // Remote Execution
-                driver = new RemoteWebDriver(new URL("https://localhost:4444/wd/hub"), options);
+        } else if (browser.equalsIgnoreCase("edge")) {
+            EdgeOptions options = new EdgeOptions();
+            if (!version.equalsIgnoreCase("latest")) {
+                options.setCapability("browserVersion", version);
+            }
+            if (runmode.equalsIgnoreCase("remote")) {
+                driver = new RemoteWebDriver(new URL(gridUrl), options);
             } else {
-                // Local execution
                 driver = new EdgeDriver();
             }
         }
 
         return driver;
     }
-
-
 }
