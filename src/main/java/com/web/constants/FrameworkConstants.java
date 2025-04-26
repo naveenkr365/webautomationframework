@@ -11,7 +11,7 @@ public final class FrameworkConstants {
 
     private static final String RESOURCEPATH = System.getProperty("user.dir")+"/src/test/resources";
     private static final String CONFIGFILEPATH = RESOURCEPATH+"/config/config.properties";
-    private static final String EXCELPATH = RESOURCEPATH+"/excel/testdata.xlsx";
+    private static final String EXCELPATH = RESOURCEPATH+"/testdata/excel/testdata.xlsx";
     private static final String EXTENTREPORTFOLDERPATH = System.getProperty("user.dir")+"/extent-test-output/";
     private static final String RUNMANAGERSHEET = "RUNMANAGER";
     private static final String ITERATIONDATASHEET = "DATA";

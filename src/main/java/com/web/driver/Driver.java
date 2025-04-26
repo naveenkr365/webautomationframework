@@ -4,14 +4,11 @@ import com.web.enums.ConfigProperties;
 import com.web.exceptions.BrowserInvocationFailedException;
 import com.web.factories.DriverFactory;
 import com.web.utils.PropertyUtils;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.net.MalformedURLException;
 import java.util.Objects;
 
-public final class Driver {
+public final class  Driver {
 
     private Driver(){}
 

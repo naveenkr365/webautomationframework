@@ -4,6 +4,7 @@ import com.web.annotations.FrameworkAnnotations;
 import com.web.reports.ExtentLogger;
 import com.web.reports.ExtentReport;
 import com.web.utils.BrowserUtils;
+import com.web.utils.ELKUtils;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ITestListener;
@@ -37,6 +38,7 @@ public class ListenerClass implements ITestListener, ISuiteListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         ExtentLogger.pass(result.getMethod().getMethodName() + " is Passed");
+        ELKUtils.sendDetailsToELK(result.getMethod().getMethodName(),"pass");
     }
 
     @Override
@@ -44,11 +46,13 @@ public class ListenerClass implements ITestListener, ISuiteListener {
             ExtentLogger.fail(result.getMethod().getMethodName() + " is Failed",true);
             ExtentLogger.fail(result.getThrowable().toString());
             ExtentLogger.fail(Arrays.toString(result.getThrowable().getStackTrace()));
+            ELKUtils.sendDetailsToELK(result.getMethod().getMethodName(),"fail");
 
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         ExtentLogger.skip(result.getMethod().getMethodName() + " is skipped");
+        ELKUtils.sendDetailsToELK(result.getMethod().getMethodName(),"skip");
     }
 }
