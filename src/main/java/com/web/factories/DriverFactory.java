@@ -20,35 +20,23 @@ public final class DriverFactory {
     public static WebDriver initDriver(String browser, String version) throws MalformedURLException {
         WebDriver driver = null;
         String runmode = PropertyUtils.get(ConfigProperties.RUNMODE);
-        String gridUrl = "http://localhost:4444/wd/hub"; // Update with EC2 Public IP if needed
+        String gridUrl = PropertyUtils.get(ConfigProperties.GRIDURL); // Update with EC2 Public IP if needed
 
         if (browser.equalsIgnoreCase("chrome")) {
-            ChromeOptions options = new ChromeOptions();
-            if (!version.equalsIgnoreCase("latest")) { // Only set version if not "latest"
-                options.setCapability("browserVersion", version);
-            }
             if (runmode.equalsIgnoreCase("remote")) {
-                driver = new RemoteWebDriver(new URL(gridUrl), options);
+                driver = new RemoteWebDriver(new URL(gridUrl), DriverOptionsFactory.chromeOptions(version));
             } else {
                 driver = new ChromeDriver();
             }
         } else if (browser.equalsIgnoreCase("firefox")) {
-            FirefoxOptions options = new FirefoxOptions();
-            if (!version.equalsIgnoreCase("latest")) {
-                options.setCapability("browserVersion", version);
-            }
             if (runmode.equalsIgnoreCase("remote")) {
-                driver = new RemoteWebDriver(new URL(gridUrl), options);
+                driver = new RemoteWebDriver(new URL(gridUrl), DriverOptionsFactory.firefoxOptions(version));
             } else {
                 driver = new FirefoxDriver();
             }
         } else if (browser.equalsIgnoreCase("edge")) {
-            EdgeOptions options = new EdgeOptions();
-            if (!version.equalsIgnoreCase("latest")) {
-                options.setCapability("browserVersion", version);
-            }
             if (runmode.equalsIgnoreCase("remote")) {
-                driver = new RemoteWebDriver(new URL(gridUrl), options);
+                driver = new RemoteWebDriver(new URL(gridUrl), DriverOptionsFactory.edgeOptions(version));
             } else {
                 driver = new EdgeDriver();
             }
