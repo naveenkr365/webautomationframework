@@ -11,5 +11,6 @@ public enum ConfigProperties {
     RUNMODE,
     GRIDURL,
     ELKURL,
-    SENDRESULTSTOELK
+    SENDRESULTSTOELK,
+    HEADLESS
 }

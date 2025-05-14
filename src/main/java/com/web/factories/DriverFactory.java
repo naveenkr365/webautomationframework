@@ -26,19 +26,19 @@ public final class DriverFactory {
             if (runmode.equalsIgnoreCase("remote")) {
                 driver = new RemoteWebDriver(new URL(gridUrl), DriverOptionsFactory.chromeOptions(version));
             } else {
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(DriverOptionsFactory.chromeOptions(version));
             }
         } else if (browser.equalsIgnoreCase("firefox")) {
             if (runmode.equalsIgnoreCase("remote")) {
                 driver = new RemoteWebDriver(new URL(gridUrl), DriverOptionsFactory.firefoxOptions(version));
             } else {
-                driver = new FirefoxDriver();
+                driver = new FirefoxDriver(DriverOptionsFactory.firefoxOptions(version));
             }
         } else if (browser.equalsIgnoreCase("edge")) {
             if (runmode.equalsIgnoreCase("remote")) {
                 driver = new RemoteWebDriver(new URL(gridUrl), DriverOptionsFactory.edgeOptions(version));
             } else {
-                driver = new EdgeDriver();
+                driver = new EdgeDriver(DriverOptionsFactory.edgeOptions(version));
             }
         }
 
