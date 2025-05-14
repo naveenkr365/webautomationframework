@@ -13,8 +13,7 @@ public final class DriverOptionsFactory {
     public static ChromeOptions chromeOptions(String version){
         ChromeOptions options = new ChromeOptions();
         if(PropertyUtils.get(ConfigProperties.HEADLESS).equalsIgnoreCase("yes")){
-            options.addArguments("--headless=new");
-            options.addArguments("--window-size=1920,1080");
+            options.addArguments("--headless");
         }
         if (!version.equalsIgnoreCase("latest")) { // Only set version if not "latest"
             options.setCapability("browserVersion", version);
