@@ -12,12 +12,12 @@
         <parameter name="version" value="latest"/>
         <classes>
             <class name="com.web.tests.OrangeHRMTests2"/>
-            <class name="com.web.tests.OrangeHRMTests"/>
+            <!--class name="com.web.tests.OrangeHRMTests"/-->
             <!--class name="com.web.tests.AmazonDemoTest"/-->
         </classes>
     </test>
 
-    <test name="Test Results_Automation_edge">
+    <!--test name="Test Results_Automation_edge">
         <parameter name="browser" value="edge"/>
         <parameter name="version" value="latest"/>
         <classes>
@@ -25,7 +25,7 @@
         </classes>
     </test>
 
-    <!--test name="Test Results_Automation_firefox">
+    <test name="Test Results_Automation_firefox">
         <parameter name="browser" value="firefox"/>
         <classes>
             <class name="com.web.tests.OrangeHRMTests2"/>
